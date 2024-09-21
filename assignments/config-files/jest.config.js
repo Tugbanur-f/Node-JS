@@ -3,6 +3,6 @@ export default {
   transform: {
     "^.+\\.jsx?$": "babel-jest",
   },
-  // By default our `node_modules` folder is ignored by jest, this tells jest to transform those as well
+  // By default our `node_modules` folderrrr is ignored by jest, this tells jest to transform those as well
   transformIgnorePatterns: [],
 };
