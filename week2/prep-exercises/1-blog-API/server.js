@@ -48,9 +48,24 @@ app.delete("/blogs/:title", (req, res) => {
   }
 });
 
+//read a blog post
+app.get("/blogs/:title", (req, res) => {
+  const { title } = req.params;
+  const filePath = `./${title.trim()}.txt`;
+
+  if (fs.existsSync(filePath)) {
+    const postContent = fs.readFileSync(filePath, "utf-8");
+    res.status(200).send(postContent);
+  } else {
+    res.status(404).send("Blog post not found");
+  }
+});
+
 app.get("/", function (req, res) {
   res.send("Hello World");
 });
+
+//start the server on port 4000
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
