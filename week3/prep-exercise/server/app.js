@@ -1,15 +1,17 @@
-import express from 'express';
-// TODO Use below import statement for importing middlewares from users.js for your routes
-// TODO import { ....... } from "./users.js";
+import express from "express";
+import usersRouter from "./users.js";
+import newDatabase from "./database.js";
 
 let app = express();
+const isPersistent = true;
+const database = newDatabase({ isPersistent });
 
 app.use(express.json());
-// TODO: Create routes here, e.g. app.post("/register", .......)
 
-// Serve the front-end application from the `client` folder
-app.use(express.static('client'));
+app.use("/auth", usersRouter);
+
+app.use(express.static("client"));
 
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  console.log("Server is running on port 3000");
 });
